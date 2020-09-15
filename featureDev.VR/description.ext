@@ -1,0 +1,6 @@
+#include <Configs\CfgVirtualItems.hpp>
+
+class CfgFunctions 
+{
+    #include <Configs\CfgFunctions.hpp>
+};
