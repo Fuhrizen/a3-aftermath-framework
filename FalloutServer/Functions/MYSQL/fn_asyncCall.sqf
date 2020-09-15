@@ -21,7 +21,7 @@ params [
 
 if (_queryStmt isEqualTo "") exitWith {[]};
 
-private _key = "extDB3" callExtension format ["%1:%2:%3",_mode,missionNamespace getVariable "",_queryStmt];
+private _key = "extDB3" callExtension format ["%1:%2:%3",_mode,DB_id,_queryStmt];
 
 if (_mode isEqualTo 1) exitWith {true};
 
