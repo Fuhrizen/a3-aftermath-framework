@@ -123,7 +123,7 @@ private _return = true;
     /* Handle the slots */
     _weight = 0;
     {
-        _weight = _weight + (ceil ((_x select 1) * getNumber(_config >> (_x select 0) >> "Weight")));
+        _weight = _weight + ((_x select 1) * getNumber(_config >> (_x select 0) >> "Weight"));
     } count _array;
 
     /* Maxslots - Slots (if < 0 = need more slots) (INT) */
@@ -156,7 +156,7 @@ if !(_return) exitWith {
     _player = _temp select 1;
 
     switch (_temp select 0) do {
-        case "Hand": {
+        case "Inventory": {
             /* Player ID (INT) */
             _temp = owner _player;
             _handler = format ["VICheck_%1", _temp];
@@ -169,7 +169,7 @@ if !(_return) exitWith {
                 [_x select 1, _x select 2] remoteExecCall ["FTC_fnc_SetInvVars", _temp];
             };
 
-            [_uidarray select _forEachIndex, 0, _x select 1] call UpdateDB;
+            [_uidarray select _forEachIndex, 0, _x select 1] call DB_fnc_UpdateDBPartial;
         };
     };
 
