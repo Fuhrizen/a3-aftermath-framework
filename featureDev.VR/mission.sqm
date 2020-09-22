@@ -8,7 +8,7 @@ class EditorData
 	toggles=1025;
 	class ItemIDProvider
 	{
-		nextID=93;
+		nextID=95;
 	};
 	class MarkerIDProvider
 	{
@@ -16,23 +16,29 @@ class EditorData
 	};
 	class Camera
 	{
-		pos[]={58.922295,14.136126,16.596663};
-		dir[]={0.14336969,-0.29024303,0.94628114};
-		up[]={0.043494973,0.95683247,0.28706938};
-		aside[]={0.98882383,9.92286e-007,-0.14981849};
+		pos[]={-11.582122,12.042123,0.030556694};
+		dir[]={0.89152044,-0.36880755,0.26348329};
+		up[]={0.35376662,0.92937386,0.10455242};
+		aside[]={0.28345421,1.966022e-006,-0.95910615};
 	};
 };
 binarizationWanted=0;
 addons[]=
 {
 	"A3_Characters_F_Orange",
-	"A3_Modules_F_Curator_Curator"
+	"A3_Weapons_F",
+	"A3_Characters_F_Heads",
+	"A3_Characters_F_Orange_Facewear",
+	"A3_Characters_F",
+	"A3_Characters_F_Orange_Vests",
+	"A3_Modules_F_Curator_Curator",
+	"A3_Structures_F_Civ_InfoBoards"
 };
 class AddonsMetaData
 {
 	class List
 	{
-		items=2;
+		items=5;
 		class Item0
 		{
 			className="A3_Characters_F_Orange";
@@ -42,8 +48,29 @@ class AddonsMetaData
 		};
 		class Item1
 		{
+			className="A3_Weapons_F";
+			name="Arma 3 Alpha - Weapons and Accessories";
+			author="Bohemia Interactive";
+			url="https://www.arma3.com";
+		};
+		class Item2
+		{
+			className="A3_Characters_F";
+			name="Arma 3 Alpha - Characters and Clothing";
+			author="Bohemia Interactive";
+			url="https://www.arma3.com";
+		};
+		class Item3
+		{
 			className="A3_Modules_F_Curator";
 			name="Arma 3 Zeus Update - Scripted Modules";
+			author="Bohemia Interactive";
+			url="https://www.arma3.com";
+		};
+		class Item4
+		{
+			className="A3_Structures_F";
+			name="Arma 3 - Buildings and Structures";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
@@ -53,6 +80,8 @@ randomSeed=12470850;
 class ScenarioData
 {
 	author="Führizen";
+	briefing=0;
+	debriefing=0;
 	saving=0;
 	respawnDialog=0;
 	disabledAI=1;
@@ -391,7 +420,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=2;
+		items=3;
 		class Item0
 		{
 			dataType="Group";
@@ -404,7 +433,8 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={59.240002,5.0014391,21.588999};
+						position[]={7.612144,5.0014391,5.6646543};
+						angles[]={0,1.2391136,0};
 					};
 					side="Civilian";
 					flags=7;
@@ -412,6 +442,24 @@ class Mission
 					{
 						init="call{this setcaptive true;}";
 						isPlayer=1;
+						class Inventory
+						{
+							class uniform
+							{
+								typeName="U_B_CombatUniform_mcam";
+								isBackpack=0;
+							};
+							class vest
+							{
+								typeName="V_Pocketed_coyote_F";
+								isBackpack=0;
+							};
+							map="ItemMap";
+							compass="ItemCompass";
+							watch="ItemWatch";
+							goggles="G_Shades_Blue";
+							headgear="H_Bandanna_khk";
+						};
 					};
 					id=81;
 					type="C_Man_Fisherman_01_F";
@@ -574,6 +622,23 @@ class Mission
 				};
 				nAttributes=4;
 			};
+		};
+		class Item2
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={0,5.5883245,0};
+				angles[]={-0,3.9826269,0};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+				init="call{this addAction [""Compile Profile"",{ " \n " { " \n "  systemChat format [""%1"",[] call fnc_profileCompile]; " \n " } remoteExec [""bis_fnc_call"", 2]; " \n " systemChat ""Compiler Called!""; " \n "},nil,1.5,false,true,"""",""true"",8]; " \n " " \n "this addAction [""Save loadout"",{ " \n " params [""_object"",""_caller"",""_ID""]; " \n "  " \n " [getPlayerUID _caller,""loadout"",getUnitLoadout _caller] call fnc_profile_setPlayerProfile; " \n " systemChat ""Loadout saved!""; " \n "},nil,1.5,false,true,"""",""true"",8]; " \n " " \n "this addAction [""Load loadout"",{ " \n " params [""_object"",""_caller"",""_ID""]; " \n "  " \n " _loadout = [getPlayerUID _caller,""loadout""] call fnc_profile_getPlayerProfileVar;  " \n " _caller setUnitLoadout _loadout;  " \n " systemChat ""Loadout loaded!""; " \n "},nil,1.5,false,true,"""",""true"",8];}";
+			};
+			id=94;
+			type="Land_InfoStand_V2_F";
 		};
 	};
 };
