@@ -53,10 +53,10 @@ private ["_item","_startarray","_amount","_quantity","_arrayitems","_temparray",
 
             _handler = format ["VIClientItems_%1", _owner];
 
-            remoteExecCall ["FTC_fnc_GetInvVars" , _owner];
+            remoteExecCall ["FTC_fnc_GetInvVars", _owner];
             waitUntil {sleep 0.01;!isNil _handler};
 
-            _startarray = +(missionNamespace getVariable _handler);
+            _startarray = +((missionNamespace getVariable _handler) select 0);
             missionNamespace setVariable [_handler, nil];
             _array = +_startarray;
         };
